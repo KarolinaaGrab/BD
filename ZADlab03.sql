@@ -44,7 +44,7 @@ INSERT INTO izba VALUES
 ('sienkiewicza 3', 'spizarnia', 40, 1);
 
 ALTER TABLE izba ADD kolor VARCHAR(40) default 'czarny' after metraz;
-# 4
+# 4 od tego momentu uzupelnic putty
 
 CREATE TABLE przetwory (
 id_przetworu int PRIMARY KEY,
