@@ -1,7 +1,7 @@
 # zad1 
 
 CREATE TABLE postac (
-id_postaci int PRIMARY KEY AUTO-INCREMENT, 
+id_postaci int PRIMARY KEY AUTO_INCREMENT, 
 nazwa VARCHAR(40) not null, 
 rodzaj enum('wiking','ptak','kobieta'),
 data_ur date,
@@ -9,9 +9,9 @@ wiek int(3) unsigned
 );
 
 INSERT INTO postac VALUES
-(1, Bjorn, wiking, 1945.12.12, 30),
-(2, Drozd, ptak, 1970.12.12, 5),
-(3, Tesciowa, kobieta, 1930.10.10, 45);
+(1, 'Bjorn', 'wiking', '1945-12-12', 30),
+(2, 'Drozd', 'ptak', '1970-12-12', 5),
+(3, 'Tesciowa', 'kobieta', '1930-10-10', 45);
 
 UPDATE postac SET wiek=88 WHERE nazwa 'Tesciowa';
 
