@@ -13,7 +13,7 @@ INSERT INTO postac VALUES
 (2, 'Drozd', 'ptak', '1970-12-12', 5),
 (3, 'Tesciowa', 'kobieta', '1930-10-10', 45);
 
-UPDATE postac SET wiek=88 WHERE nazwa 'Tesciowa';
+UPDATE postac SET wiek=88 WHERE nazwa='Tesciowa';
 
 # zad 2
 
