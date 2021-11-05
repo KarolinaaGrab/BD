@@ -18,7 +18,7 @@ UPDATE postac SET wiek=88 WHERE nazwa='Tesciowa';
 # zad 2
 
 CREATE TABLE walizka (
-id_walizki int PRIMARY KEY AUTO-INCREMENT,
+id_walizki int PRIMARY KEY AUTO_INCREMENT,
 pojemnosc int unsigned,
 kolor enum('rozowy', 'teczowy', 'zolty'),
 id_wlasciciela int,
