@@ -35,9 +35,10 @@ INSERT INTO walizka VALUES
 CREATE TABLE izba (
 adres_budynku VARCHAR(40) not null,
 nazwa_izby VARCHAR (40) not null,
+ PRIMARY KEY (adres_budynku, nazwa_izby),
 metraz int unsigned,
 wlasciciel int,
-FOREIGN KEY (id_wlasciciela) REFERENCES postac (id_postaci) on delete set null, constraint PK_izba PRIMARY KEY (adres_budynku, nazwa_izby));
+FOREIGN KEY (wlasciciel) REFERENCES postac (id_postaci) on delete set null);
 
 INSERT INTO izba VALUES
 ('sienkiewicza 3', 'spizarnia', 40, 1);
