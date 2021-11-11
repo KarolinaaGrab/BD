@@ -44,47 +44,50 @@ INSERT INTO izba VALUES
 ('sienkiewicza 3', 'spizarnia', 40, 1);
 
 ALTER TABLE izba ADD kolor VARCHAR(40) default 'czarny' after metraz;
-# 4 od tego momentu uzupelnic putty
+# 4
 
 CREATE TABLE przetwory (
 id_przetworu int PRIMARY KEY,
 rok_produkcji int(4) default '1654',
 id_wykonawcy int,
 FOREIGN KEY (id_wykonawcy) REFERENCES postac (id_postaci),
-zawartosc VARCHAR,
-dodatek VARCHAR default 'papryczka chilli',
+zawartosc VARCHAR(40),
+dodatek VARCHAR(40) default 'papryczka chilli',
 id_konsumenta int,
 FOREIGN KEY (id_konsumenta) REFERENCES postac (id_postaci));
 
-INSERT INTO przetwory VALUES
-(default, 1930, 1, 'bigos', 'chilli', 3);
+INSERT INTO przetwory (id_przetworu, zawartosc) VALUES
+(1, 'bigos');
 
 # 5
 
 INSERT INTO postac VALUES
 (default, 'Jan','wiking','2020-01-02',48),
-(),
-(),
-(),
-();
+(default, 'Piotr', 'wiking', '1999-05-05', 24),
+(default, 'Jonasz', 'wiking', '2002-06-24', 19),
+(default, 'Adam', 'wiking', '1984-07-15', 42),
+(default, 'Witold', 'wiking', '1999-09-19', 21);
 
 CREATE TABLE statek (
-nazwa_statku VARCHAR PRIMARY KEY,
-rodzaj_statku enum ('wojenny','handlowy','pasazerski'),
+nazwa_statku VARCHAR(40) PRIMARY KEY,
+rodzaj_statku enum('wojenny','handlowy','pasazerski'),
 data_wodowania DATE,
 max_ladownosc int unsigned);
 
 INSERT INTO statek VALUES
-('Statek1', 'wojenny', '1923-10-12', 40),
-();
+('Ogien', 'wojenny', '1923-10-12', 40),
+('Ekipa', 'pasazerski', '1929-10-10', 25);
 
 ALTER TABLE postac ADD COLUMN funkcja VARCHAR(40);
 
 UPDATE postac SET funkcja='kapitan' WHERE nazwa='Bjorn';
 
-ALTER TABLE postac ADD FOREIGN KEY REFERENCES statek(nazwa_statku);
-UPDATE postac SET statek='Statek1' WHERE nazwa 'Bjorn';
-# to samo
+ALTER TABLE postac ADD statek VARCHAR(40);
+ALTER TABLE postac ADD FOREIGN KEY(statek) REFERENCES statek(nazwa_statku);
+UPDATE postac SET statek='Ogien' WHERE nazwa 'Bjorn';
 
-DELETE FROM izba WHERE nazwa_izby 'spizarnia';
+UPDATE postac SET statek='Ekipa' WHERE rodzaj='wiking';
+UPDATE postac SET statek='Ogien' WHERE nazwa='Bjorn';
+
+DELETE FROM izba WHERE nazwa_izby='spizarnia';
 DROP TABLE izba;
