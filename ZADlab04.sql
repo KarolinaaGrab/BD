@@ -1,7 +1,7 @@
 # Lab 04 
 Zad 1
 
-
+alter table walizka drop foreign key walizka_ibfk_1; (tu koniec)
 ALTER TABLE walizka DROP FOREIGN KEY (id_wlasciciela);
 ALTER TABLE przetwory DROP FOREIGN KEY (id_wykonawcy);
 ALTER TABLE przetwory DROP FOREIGN KEY (id_konsumenta);
