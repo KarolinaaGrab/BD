@@ -52,7 +52,7 @@ rok_produkcji int(4) default '1654',
 id_wykonawcy int,
 FOREIGN KEY (id_wykonawcy) REFERENCES postac (id_postaci),
 zawartosc VARCHAR,
-dodatek VARCHAR default 'papryczka_chilli',
+dodatek VARCHAR default 'papryczka chilli',
 id_konsumenta int,
 FOREIGN KEY (id_konsumenta) REFERENCES postac (id_postaci));
 
