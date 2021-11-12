@@ -2,17 +2,15 @@
 Zad 1
 
 alter table walizka drop foreign key walizka_ibfk_1; (tu koniec)
-ALTER TABLE walizka DROP FOREIGN KEY (id_wlasciciela);
-ALTER TABLE przetwory DROP FOREIGN KEY (id_wykonawcy);
-ALTER TABLE przetwory DROP FOREIGN KEY (id_konsumenta);
-ALTER TABLE izba DROP FOREIGN KEY (id_wlasciciela);
+ alter table przetwory drop foreign key przetwory_ibfk_1;
+alter table przetwory drop foreign key przetwory_ibfk_2;
 
 
 ALTER TABLE postac MODIFY id_postaci int;
 ALTER TABLE postac DROP PRIMARY KEY;
 
 
-# Zad 2
+# Zad 2 tu
 
 ALTER TABLE postac ADD COLUMN pesel CHAR(11) PRIMARY KEY;
 ALTER TABLE postac MODIFY rodzaj enum('wiking', 'ptak', 'kobieta', 'syrena');
