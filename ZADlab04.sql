@@ -4,9 +4,10 @@ Zad 1
 DELETE FROM postac WHERE rodzaj='wiking' AND nazwa!='Bjorn' ORDER BY data_ur ASC LIMIT 2;
 
 alter table postac drop foreign key postac_ibfk_1;
-alter table walizka drop foreign key walizka_ibfk_1; (tu koniec)
+alter table walizka drop foreign key walizka_ibfk_1; 
  alter table przetwory drop foreign key przetwory_ibfk_1;
 alter table przetwory drop foreign key przetwory_ibfk_2;
+
 
 ALTER TABLE postac MODIFY id_postaci int;
 ALTER TABLE postac DROP PRIMARY KEY;
@@ -14,8 +15,11 @@ ALTER TABLE postac DROP PRIMARY KEY;
 
 # Zad 2 tu
 
-ALTER TABLE postac ADD COLUMN pesel CHAR(11) PRIMARY KEY;
+ALTER TABLE postac ADD COLUMN pesel CHAR(11) not null;
+alter table postac ADD PRIMARY KEY(pesel);
+
 ALTER TABLE postac MODIFY rodzaj enum('wiking', 'ptak', 'kobieta', 'syrena');
+
 
 INSERT INTO postac VALUES
 (4, 'Gertruda nieszczera', 'syrena' 1956-05-05, 19);
