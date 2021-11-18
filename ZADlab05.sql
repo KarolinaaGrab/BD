@@ -53,7 +53,7 @@ select distinct rodzaj, nazwa from zasob; - sprawdza unikalne wartosci z tych ws
 
 2) #concat(łańcuch znaków, łańcuch znajów, ...)
 select concat ('Ala ma kota, o imieniu', nazwa) as wierszyk from kreatura;
-############
+#############
 
 
 select concat (nazwa,'-', rodzaj) from kreatura where rodzaj like 'Wi%';
