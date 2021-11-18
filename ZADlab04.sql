@@ -16,77 +16,71 @@ ALTER TABLE postac DROP PRIMARY KEY;
 # Zad 2 tu
 
 ALTER TABLE postac ADD COLUMN pesel CHAR(11) not null;
+update postac set pesel='12345678900'+id_postaci;
 alter table postac ADD PRIMARY KEY(pesel);
 
 ALTER TABLE postac MODIFY rodzaj enum('wiking', 'ptak', 'kobieta', 'syrena');
 
 
-INSERT INTO postac VALUES
-(4, 'Gertruda nieszczera', 'syrena' 1956-05-05, 19);
-
+INSERT INTO postac (id_postaci, nazwa, rodzaj, data_ur, wiek, pesel) VALUES 
+(9, 'Gertruda nieszczera', 'syrena', '1956-05-05', 19, '12345678909');
 
 # Zad 3
-select nazwa from postac where nazwa like 'a%';
-INSERT INTO statek  WHERE statek='Statek1';
+# select * from postac where nazwa like 'a%'
+update postac set statek='Ekipa' where rodzaj ='wiking' and nazwa like '%a%';
 
-UPDATE statek SET max_ladownosc=max_ladownosc*0,7 
-WHERE data_wodowania >= '1901-01-01' and data_wodowania <= '2000-12-31';
+UPDATE statek SET max_ladownosc=max_ladownosc*0.7 WHERE data_wodowania BETWEEN '1901-01-01' and '2000-12-31';
 
 
-#c)??
-
+#c)
+ALTER TABLE postac ADD CHECK (wiek<=1000);
 
 #ZAd 4
 #a)
 
 ALTER TABLE postac MODIFY rodzaj enum('wiking', 'ptak', 'kobieta', 'syrena', 'waz');
-INSERT INTO postac VALUES
-(5, 'Loko', 'waz','1956-03-03', 3);
+INSERT INTO postac (id_postaci, nazwa, rodzaj, data_ur, wiek, pesel) VALUES
+(5, 'Loko', 'waz','1956-03-03', 3, 12345678905);
 
 #b)
 
-#1 sposob (nie przenosza sie klucze i dane)
-desc postac; #(co w tabeli)
 create table marynarz like postac;
-
- #2 sposob TEN - kopia z danymi
+#############################
  create table marynarz select rodzaj, nazwa, data_ur drom postac;
  #ALIAS
   create table marynarz select rodzaj, nazwa as bohater, data_ur drom postac;
  
  #przenoszenie danych miedzy tabelami + TO
- 
+ ###############################
  insert into marynarz select * from postac where statek is not null;
 
 #TAK NIE ZADZIALA	
 != null  
 #
 
-#c) - tylko gdy create table like postac;
-
-
-
-
-
+#c) - tylko gdy CREATE TABLE marynarz SELECT * FROM postac;
+Tworzy nową tabelę o nazwie marynarz o strukturze tabeli postac (ale bez kluczy) 
+i wstawia do niej dane wybrane poleceniem SELECT.
 
 
 
 
 # zad 5
 #a)
-UPDATE INTO statek 
+UPDATE postac set statek = NULL;
 #b)
-ALTER TABLE wiking DROP WHERE nazwa='Jan';
+DELETE FROM postac WHERE nazwa='Jan';
+DELETE FROM marynarz WHERE nazwa='Jan';
 #c)
-
+DELETE FROM statek;
 #d) 
 DROP TABLE statek;
 
 #e)
 CREATE TABLE zwierz (
-id PRIMARY KEY AUTO_INCREMENT,
-nazwa VARCHAR,
-wiek int unsigned
+id int PRIMARY KEY AUTO_INCREMENT,
+nazwa VARCHAR(50),
+wiek int
 );
-#f)
-INSERT INTO zwierz select * from postac WHERE rodzaj=('waz', 'ptak');
+f)
+INSERT INTO zwierz select id_postaci, nazwa, wiek from postac WHERE rodzaj='waz' or rodzaj='ptak';
