@@ -66,3 +66,43 @@ INNER JOIN zasob
 ON ekwipunek.idZasobu=zasob.idZasobu where rodzaj='wiking' and kreatura.dataUr between '1670-01-01' and '1700-12-31' from kreatura;
 
  
+ 
+ 
+ 
+ #zad5
+ 1)
+ select k.rodzaj, avg(e.ilosc * z.waga) from kreatura k
+ inner join ekwipunek e on k.idKreatury=e.idKreatury
+ inner join zasob z on e.idZasobu=z.idZasobu
+ where k.rodzaj not in ('malpa','waz')
+group by k.rodzaj having sum(e.ilosc)<30;
+
+2) #zlaczyc dwa niezalezne zapytania ze soba - union
+
+select nazwa from kreatura where rodzaj !='wiking'
+union
+select nazwa from kreatura where rodzaj ='wiking'
+###############
+select rodzaj, max(dataUr) from kreatura group by rodzaj;
+#############
+select nazwa, dataUr, rodzaj 
+from kreatura 
+where dataUr in (select max(dataUr) from kreatura group by rodzaj);
+union
+select nazwa, dataUr, rodzaj 
+from kreatura 
+where dataUr in (select min(dataUr) from kreatura group by rodzaj);
+
+#6 wynikow z obu  ; z union - 10 czemu? - rekord wyswietla sie tylko raz - jest tylko jeden reprezentant rodzaju
+################################
+
+
+ODP)
+select k.nazwa, k.dataUr, k.rodzaj
+from kreatura k,
+(select min(dataUr) as min, max(dataUr) as max from kreatura group by rodzaj) pod
+where k.dataUr=pod.min or k.dataUr=pod.max;
+
+#
+(cale wyrazenie bd prawdziwe, jezeli chociaz 1 bedzie prawdziwe -> ALTERNATYWa)
+#(tak jak przy union 10 wynikow, ale tu z jednym zapytaniem)
