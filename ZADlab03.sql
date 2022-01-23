@@ -90,8 +90,8 @@ UPDATE postac SET funkcja='kapitan' WHERE nazwa='Bjorn';
 ALTER TABLE postac ADD statek VARCHAR(40);
 ALTER TABLE postac ADD FOREIGN KEY (statek) REFERENCES statek(nazwa_statku);
 
-UPDATE postac SET statek='Ekipa' WHERE nazwa='Witold' and nazwa='Adam' and nazwa='Jonasz';
-UPDATE postac SET statek='Ogien' WHERE nazwa='Bjorn' and nazwa='Piotr'and nazwa='Jan';
+UPDATE postac SET statek='Ekipa' WHERE nazwa='Witold' or nazwa='Adam' or nazwa='Jonasz';
+UPDATE postac SET statek='Ogien' WHERE nazwa='Bjorn' or nazwa='Piotr'or nazwa='Jan';
 
 DELETE FROM izba WHERE nazwa_izby='spizarnia';
 DROP TABLE izba;
