@@ -38,10 +38,10 @@ select rodzaj, count(distinct(nazwa)) from zasob group by rodzaj having sum(ilos
 
 #Zad 3
 1)
-SELECT kreatura.nazwa, sum(ekwipunek.ilosc) 
-FROM kreatura, ekwipunek 
-WHERE kreatura.idKreatury=ekwipunek.idKreatury 
-GROUP BY kreatura.idKreatury; 
+select sum(e.ilosc) from kreatura k
+inner join ekwipunek e
+on k.idKreatury=e.idKreatury
+group by k.idKreatury;
 
 2)
 SELECT k.nazwa, z.nazwa
