@@ -22,7 +22,7 @@ select rodzaj, avg(YEAR(CURDATE())-YEAR(dataUr)) AS 'sredni wiek' FROM kreatura 
 1)
 select rodzaj, sum(waga) as 'waga' from zasob group by rodzaj;
 
-2)
+2) Having - warunki tylko dla kolumn zagregowanych
 select nazwa, avg(waga) from zasob where ilosc>=4 group by nazwa having sum(waga)>10;
 
 ########
