@@ -3,25 +3,10 @@ Zad 1
 Jezeli pracuje na wikingowie nie trzeba
 
 2)
-select * from kreatura k
-inner join uczestnicy u on k.idKreatury=u.id_uczestnika;
 
-select distinct id_uczestnika from uczestnicy;
-select idKreatury from kreatura;
-
-(czyli 15 jest uczestnikami,a 4 nie)
-
-
-
-podzapytanie:
-select idKreatury from kreatura
-where idKreatury not in (select id_uczestnika from uczestnicy);
-ROZWIAZANIE:
-
-LEFT JOIN:
 left join - pokazalo null i wsz wyniki; teraz trzeba wstawic warunek where (...) null - wynik- postaci, kt nie brały udziału)
 
-select nazwa from kreatura k
+select k.nazwa from kreatura k
 Left join uczestnicy u
 on k.idKreatury=u.id_uczestnika
 where u.id_uczestnika is null;
